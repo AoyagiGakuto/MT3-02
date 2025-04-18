@@ -129,6 +129,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
         3.3f, 9.9f, 8.8f, 2.2f
     };
 
+
     // ウィンドウの×ボタンが押されるまでループ
     while (Novice::ProcessMessage() == 0) {
         // フレームの開始
