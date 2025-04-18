@@ -58,13 +58,13 @@ Matrix4x4 Inverse(const Matrix4x4& m)
         for (int j = 0; j < 4; ++j) {
             float cofactor = m.m[(i + 1) % 4][(j + 1) % 4] * (m.m[(i + 2) % 4][(j + 2) % 4] * m.m[(i + 3) % 4][(j + 3) % 4] - m.m[(i + 2) % 4][(j + 3) % 4] * m.m[(i + 3) % 4][(j + 2) % 4]) - m.m[(i + 1) % 4][(j + 2) % 4] * (m.m[(i + 2) % 4][(j + 1) % 4] * m.m[(i + 3) % 4][(j + 3) % 4] - m.m[(i + 2) % 4][(j + 3) % 4] * m.m[(i + 3) % 4][(j + 1) % 4]) + m.m[(i + 1) % 4][(j + 3) % 4] * (m.m[(i + 2) % 4][(j + 1) % 4] * m.m[(i + 3) % 4][(j + 2) % 4] - m.m[(i + 2) % 4][(j + 2) % 4] * m.m[(i + 3) % 4][(j + 1) % 4]);
 
-            result.m[j][i] = cofactor / det;
+            float sign = ((i + j) % 2 == 0) ? 1.0f : -1.0f;
+            result.m[j][i] = sign * cofactor / det;
         }
     }
 
     return result;
 }
-
 
 // 5.転置行列
 Matrix4x4 Transpose(const Matrix4x4& m)
